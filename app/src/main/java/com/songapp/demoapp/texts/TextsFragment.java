@@ -65,9 +65,10 @@ public class TextsFragment extends Fragment {
 
         return mView;
     }
-String getString(InputStream i) throws IOException{
-    Scanner s = new Scanner(i).useDelimiter("\\A");
-    String result = s.hasNext() ? s.next() : "";
-    return result;
-}
+
+    String getString(InputStream i) throws IOException{
+        Scanner s = new Scanner(i).useDelimiter("\\A");
+        String result = s.hasNext() ? s.next() : "";
+        return result;
+    }
 }

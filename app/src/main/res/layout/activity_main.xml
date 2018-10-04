@@ -21,11 +21,12 @@
 
     <android.support.design.widget.BottomNavigationView
         android:id="@+id/nav_view"
-        android:layout_width="385dp"
-        android:layout_height="55dp"
-        android:background="@color/design_default_color_primary"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@color/colorAccent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:menu="@menu/nav_items">
 
