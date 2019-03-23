@@ -1,6 +1,7 @@
 package com.songapp.demoapp;
 
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -20,9 +21,12 @@ public class MainActivity extends AppCompatActivity {
     private BottomNavigationView mMainView;
     private FrameLayout mMainFrame;
 
+
     private TextsFragment textsFragment;
     private SongFragment songFragment;
-    private WeekFragment weekFragment;
+
+    public static MyPlayer player;
+    public static int currentSong=-1;
 
 
     public static int selectGroup;
@@ -38,8 +42,8 @@ public class MainActivity extends AppCompatActivity {
 
         textsFragment=new TextsFragment();
         songFragment=new SongFragment();
-        weekFragment=new WeekFragment();
 
+        player=new MyPlayer();
 
         mMainView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -49,12 +53,10 @@ public class MainActivity extends AppCompatActivity {
 
 
                     case R.id.navText:
-                        mMainView.setBackgroundColor(getResources().getColor(R.color.colorAccent));
-                        setFragment(weekFragment);
+                        setFragment(textsFragment);
                         return true;
 
                     case R.id.navSong:
-                        mMainView.setBackgroundColor(getResources().getColor(R.color.design_default_color_primary));
                         setFragment(songFragment);
                         return true;
 
@@ -63,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
-        setFragment(weekFragment);
+        setFragment(textsFragment);
 
 
 

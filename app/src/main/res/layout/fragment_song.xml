@@ -58,7 +58,7 @@
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/updownArrow"
-                android:layout_width="114dp"
+                android:layout_width="92dp"
                 android:layout_height="92dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
@@ -77,7 +77,7 @@
                 android:contentDescription="@string/todo"
                 android:padding="10dp"
                 android:scaleType="center"
-                app:layout_constraintBottom_toTopOf="@+id/musicseek"
+                app:layout_constraintBottom_toTopOf="@+id/songStartTimer"
                 app:layout_constraintEnd_toStartOf="@+id/nextBtn"
                 app:layout_constraintStart_toEndOf="@+id/prevBtn"
                 app:layout_constraintTop_toBottomOf="@+id/songName"
@@ -86,13 +86,13 @@
             <ImageView
                 android:id="@+id/prevBtn"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="23dp"
                 android:layout_marginStart="30dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
                 android:contentDescription="@string/todo"
                 android:src="@drawable/prev"
-                app:layout_constraintBottom_toTopOf="@+id/musicseek"
+                app:layout_constraintBottom_toTopOf="@+id/songStartTimer"
                 app:layout_constraintStart_toEndOf="@+id/updownArrow"
                 app:layout_constraintTop_toBottomOf="@+id/songName"
                 tools:srcCompat="@drawable/prev" />
@@ -107,7 +107,7 @@
                 android:contentDescription="@string/todo"
                 android:scaleX="-1"
                 android:src="@drawable/prev"
-                app:layout_constraintBottom_toTopOf="@+id/musicseek"
+                app:layout_constraintBottom_toTopOf="@+id/songEndTime"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/songName"
                 tools:srcCompat="@drawable/prev" />
@@ -117,7 +117,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="16dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginBottom="8dp"
                 android:max="100"
@@ -125,6 +125,26 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/songStartTimer" />
+
+            <TextView
+                android:id="@+id/songStartTimer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="8dp"
+                android:text="00:00"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/updownArrow" />
+
+            <TextView
+                android:id="@+id/songEndTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="24dp"
+                android:text="00:00"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/updownArrow" />
 
         </android.support.constraint.ConstraintLayout>

@@ -2,6 +2,10 @@ package com.songapp.demoapp.texts;
 
 
 import android.content.res.AssetManager;
+import android.content.res.Resources;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -10,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.songapp.demoapp.MainActivity;
 import com.songapp.demoapp.R;
 
 import java.io.IOException;
@@ -32,12 +37,14 @@ public class TextsFragment extends Fragment {
 
     TextAdapter adapter;
 
-    AssetManager assestm;
     private String[] list;
+
+
 
 
     public TextsFragment() {
         // Required empty public constructor
+
     }
 
 
@@ -47,21 +54,36 @@ public class TextsFragment extends Fragment {
         // Inflate the layout for this fragment
         mView= inflater.inflate(R.layout.fragment_texts, container, false);
 
+
+        String[] titles={"Joyful Mystery","Sorrowful Mystery","Glorious Mystery","Luminous Mystery","¸ÀAvÉÆ¸ÁZÉ «Ä¸ÉÛgï","zÀÄBTZÉ «Ä¸ÉÛgï","D£ÀAzÁZÉ «Ä¸ÉÛgï","GeÁéqÁZÉ «Ä¸ÉÛgï","¸ÀPÁ½Aa ¨sÉmÉÆ«","¸ÁAeÉa ªÀiÁVÚ","ªÀÄÄ¼Á«A ªÀiÁVÚA"};
+        String[] desc={"Monday-Saturday","Tuesday-Friday","Wednesday-Sunday","Thursday","¸ÉÆªÀiÁgÁ D¤ ¸À£ÁégÁ","ªÀÄAUÁîgÁ D¤ ¸ÀÄPÁægÁ","§ÄzÁégÁ D¤ DaiÀiÁÛgÁ","¨Éæ¸ÁÛgÁ","","",""};
+        int[] images={R.drawable.j1,R.drawable.j2,R.drawable.j3,R.drawable.j4,R.drawable.j1,R.drawable.j2,R.drawable.j3,R.drawable.j4,R.drawable.j9,R.drawable.j10,R.drawable.j11};
+
+
         arrayList=new ArrayList<TextData>();
         listView=mView.findViewById(R.id.textLists);
 
-        assestm=getContext().getAssets();
-        try {
-            list = assestm.list("texts");
-            for(String i : list){
-                arrayList.add(new TextData(i,getString(assestm.open("texts/"+i))));
+        for(int i=0;i< titles.length;i++)
+        {
+            TextData temp=new TextData();
+            temp.setDesc(desc[i]);
+            temp.setTitle(titles[i]);
+            temp.setImage(BitmapFactory.decodeResource( getResources(), images[i] ) );
+            if(i<4)
+            {
+                temp.setKannada(false);
             }
-        } catch (Exception e) {
-            Toast.makeText(getContext(),"Cannot Load Texts",Toast.LENGTH_SHORT).show();
+            else
+                temp.setKannada(true);
+            arrayList.add(temp);
         }
-        adapter=new TextAdapter(getContext(),R.layout.text_single,arrayList);
+
+
+
+        adapter=new TextAdapter(getContext(),R.layout.menusingletext,arrayList);
 
         listView.setAdapter(adapter);
+
 
         return mView;
     }
