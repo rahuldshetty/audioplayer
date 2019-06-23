@@ -1,5 +1,6 @@
 package com.songapp.demoapp.texts;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -49,6 +50,14 @@ public class TextOpenWhole extends AppCompatActivity {
 
             Toast.makeText(this, "Scroll to view...", Toast.LENGTH_SHORT).show();
 
+    }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent act = new Intent(TextOpenWhole.this,MainActivity.class);
+        act.putExtra("CLASS",2);
+        startActivity(act);
+        finish();
     }
 }

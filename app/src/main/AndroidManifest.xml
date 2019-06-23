@@ -9,9 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity
-            android:name=".MainActivity"
-            android:launchMode="singleInstance"
+        <activity android:name=".SplashActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -20,13 +18,18 @@
             </intent-filter>
         </activity>
         <activity
+            android:name=".MainActivity"
+            android:launchMode="singleInstance"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity
             android:name=".texts.TextOpen"
             android:parentActivityName=".MainActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".texts.TextOpenWhole"
+        <activity
+            android:name=".texts.TextOpenWhole"
             android:parentActivityName=".MainActivity"
-            android:screenOrientation="portrait"
-            ></activity>
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

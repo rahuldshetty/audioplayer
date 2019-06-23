@@ -64,8 +64,14 @@ public class TextAdapter extends ArrayAdapter<TextData> {
             @Override
             public void onClick(View v) {
                 Intent openText;
-
-                MainActivity.selectGroup=position+1;
+                int offSet  = 0;
+                if(MainActivity.group.equals("ENGLISH")){
+                    offSet=0;
+                }
+                else{
+                    offSet = 4;
+                }
+                MainActivity.selectGroup=position+1+offSet;
 
                 if(MainActivity.selectGroup<9)
                      openText=new Intent(context.getApplicationContext(),TextOpen.class);

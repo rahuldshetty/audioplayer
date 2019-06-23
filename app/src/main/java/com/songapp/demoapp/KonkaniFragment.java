@@ -1,21 +1,16 @@
-package com.songapp.demoapp.texts;
+package com.songapp.demoapp;
 
 
-import android.content.res.AssetManager;
-import android.content.res.Resources;
-import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
-import android.widget.Toast;
 
-import com.songapp.demoapp.MainActivity;
-import com.songapp.demoapp.R;
+import com.songapp.demoapp.texts.TextAdapter;
+import com.songapp.demoapp.texts.TextData;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -26,7 +21,7 @@ import java.util.Scanner;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class TextsFragment extends Fragment {
+public class KonkaniFragment extends Fragment {
 
 
     View mView;
@@ -42,7 +37,7 @@ public class TextsFragment extends Fragment {
 
 
 
-    public TextsFragment() {
+    public KonkaniFragment() {
         // Required empty public constructor
 
     }
@@ -63,7 +58,7 @@ public class TextsFragment extends Fragment {
         arrayList=new ArrayList<TextData>();
         listView=mView.findViewById(R.id.textLists);
 
-        for(int i=0;i< 4;i++)
+        for(int i=4;i< titles.length;i++)
         {
             TextData temp=new TextData();
             temp.setDesc(desc[i]);
@@ -88,9 +83,10 @@ public class TextsFragment extends Fragment {
         return mView;
     }
 
-    String getString(InputStream i) throws IOException{
+    String getString(InputStream i) throws IOException {
         Scanner s = new Scanner(i).useDelimiter("\\A");
         String result = s.hasNext() ? s.next() : "";
         return result;
     }
+
 }

@@ -277,7 +277,17 @@ public class TextOpen extends AppCompatActivity {
 
     }
 
-
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent act = new Intent(TextOpen.this,MainActivity.class);
+        if(MainActivity.group.equals("ENGLISH"))
+            act.putExtra("CLASS",1);
+        else
+            act.putExtra("CLASS",2);
+        startActivity(act);
+        finish();
+    }
 
 
 

@@ -1,16 +1,12 @@
 package com.songapp.demoapp;
 
-import android.content.Intent;
-import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.CardView;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.FrameLayout;
 import com.songapp.demoapp.texts.*;
 
@@ -24,11 +20,13 @@ public class MainActivity extends AppCompatActivity {
 
     private TextsFragment textsFragment;
     private SongFragment songFragment;
+    private KonkaniFragment konkaniFragment;
 
     public static MyPlayer player;
     public static int currentSong=-1;
 
 
+    public static String group="";
     public static int selectGroup;
 
     @Override
@@ -42,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
 
         textsFragment=new TextsFragment();
         songFragment=new SongFragment();
+        konkaniFragment=new KonkaniFragment();
 
         player=new MyPlayer();
 
@@ -50,9 +49,13 @@ public class MainActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
 
                 switch(menuItem.getItemId()) {
+                    case R.id.navKonkani:
+                        setFragment(konkaniFragment);
+                        group="KONKANI";
+                        return true;
 
-
-                    case R.id.navText:
+                    case R.id.navEnglish:
+                        group="ENGLISH";
                         setFragment(textsFragment);
                         return true;
 
@@ -65,17 +68,26 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
-        setFragment(textsFragment);
 
-
-
+        switch (getIntent().getIntExtra("CLASS",1)){
+            case 1:
+                setFragment(textsFragment);
+                group="ENGLISH";
+                mMainView.setSelectedItemId(R.id.navEnglish);
+                break;
+            case 2:
+                setFragment(konkaniFragment);
+                mMainView.setSelectedItemId(R.id.navKonkani);
+                group="KONKANI";
+                break;
+            case 3:
+                setFragment(songFragment);
+                mMainView.setSelectedItemId(R.id.navSong);
+                break;
+        }
 
 
     }
-
-
-
-
 
 
     public void setFragment(Fragment fragment)
