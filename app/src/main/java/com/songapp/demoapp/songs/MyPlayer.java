@@ -41,7 +41,7 @@ public class MyPlayer implements Serializable {
 
     TelephonyManager telephonyManager;
 
-    static int[] songimageId={R.drawable.s1,R.drawable.s2,R.drawable.imgsample,R.drawable.s4,R.drawable.s5,R.drawable.s6,R.drawable.imgsample,R.drawable.imgsample,R.drawable.j2};
+    static int[] songimageId={R.drawable.imgsample,R.drawable.imgsample,R.drawable.s5,R.drawable.s9,R.drawable.s4,R.drawable.s6,R.drawable.s2,R.drawable.s1};
     //view
     private ImageView playbutton;
     private TextView name;
@@ -74,7 +74,7 @@ public class MyPlayer implements Serializable {
             prevBtn.setVisibility(View.INVISIBLE);
             prevBtn.setEnabled(false);
         }
-        else if(MainActivity.currentSong==8)
+        else if(MainActivity.currentSong==7)
         {
             fwdBtn.setVisibility(View.INVISIBLE);
             fwdBtn.setEnabled(false);
@@ -161,7 +161,7 @@ public class MyPlayer implements Serializable {
             prevBtn.setVisibility(View.INVISIBLE);
             prevBtn.setEnabled(false);
         }
-        else if(MainActivity.currentSong==8)
+        else if(MainActivity.currentSong==7)
         {
             prevBtn.setEnabled(true);
             prevBtn.setVisibility(View.VISIBLE);
@@ -232,6 +232,10 @@ public class MyPlayer implements Serializable {
             MainActivity.currentSong = 0;
             currentsong = songs.get(0);
             name.setText(songnames[0]);
+            fwdBtn.setEnabled(true);
+            fwdBtn.setVisibility(View.VISIBLE);
+            prevBtn.setVisibility(View.INVISIBLE);
+            prevBtn.setEnabled(false);
         }
         else{
             currentsong=songs.get(MainActivity.currentSong);
