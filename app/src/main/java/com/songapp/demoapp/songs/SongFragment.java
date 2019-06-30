@@ -20,7 +20,13 @@ import android.widget.TextView;
 
 import com.songapp.demoapp.MainActivity;
 import com.songapp.demoapp.R;
+
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -113,7 +119,7 @@ public class SongFragment extends Fragment {
         songList=new ArrayList<AssetFileDescriptor>();
         AssetManager asm = getActivity().getBaseContext().getAssets();
 
-        int[] songimageId={R.drawable.s1,R.drawable.s2,R.drawable.imgsample,R.drawable.s4,R.drawable.s5,R.drawable.s6,R.drawable.imgsample,R.drawable.imgsample,R.drawable.j2};
+        int[] songimageId={R.drawable.s1,R.drawable.s2,R.drawable.s4,R.drawable.s5,R.drawable.s6,R.drawable.imgsample,R.drawable.imgsample,R.drawable.j2};
 
         try{
             songlist=asm.list("audio");
@@ -127,8 +133,63 @@ public class SongFragment extends Fragment {
         }catch (Exception e){
             e.printStackTrace();
         }
+        //Sorting Logic
+        ArrayList<Wrapper> wrappers =  sorting(arrayList,songList,songlist);
+        arrayList.clear();
+        songList.clear();
+        for(int i=0;i<wrappers.size();i++)
+        {
+            arrayList.add(wrappers.get(i).songs);
+            songList.add(wrappers.get(i).assets);
+            songlist[i] = wrappers.get(i).songTitle;
+        }
+
         MainActivity.player.setSongList(songList,songlist);
         adapter=new SongAdapter(getContext(),R.layout.single_music_item,arrayList, MainActivity.player,songCover);
         listView.setAdapter(adapter);
     }
+
+    class Wrapper{
+        SongData songs;
+        AssetFileDescriptor assets;
+        String songTitle;
+        public Wrapper( SongData songs,AssetFileDescriptor assets,String title){
+            this.songs = songs;
+            this.assets = assets;
+            this.songTitle = title;
+        }
+    }
+
+    class SortByName implements Comparator<Wrapper>{
+
+        @Override
+        public int compare(Wrapper o1, Wrapper o2) {
+            String order[] = {"Morning","Joyful","Sorrowful","Glorious","Luminous","Evening","Divine"};
+            int a = 0,b=0;
+            for(int i=0;i<order.length;i++){
+                if(o1.songs.getTitle().toLowerCase().contains(order[i].toLowerCase())){
+                    a=i;
+                    break;
+                }
+            }
+            for(int i=0;i<order.length;i++){
+                if(o2.songs.getTitle().toLowerCase().contains(order[i].toLowerCase())){
+                    b=i;
+                    break;
+                }
+            }
+            return a - b;
+        }
+    }
+
+    public ArrayList<Wrapper> sorting(ArrayList<SongData> songs, ArrayList<AssetFileDescriptor> arrays,String songnames[]){
+        ArrayList<Wrapper> wrapper = new ArrayList<>() ;
+        for(int i=0;i<songs.size();i++){
+            Wrapper temp = new Wrapper(songs.get(i),arrays.get(i),songnames[i]);
+            wrapper.add(temp);
+        }
+        Collections.sort(wrapper,new SortByName());
+        return wrapper;
+    }
+
 }

@@ -47,8 +47,6 @@ public class SongAdapter extends ArrayAdapter<SongData> {
         ImageView btn=view.findViewById(R.id.singlePlayBtn);
 
 
-
-
         final SongData data = textList.get(position);
         title.setText(data.getTitle());
         imgView.setImageBitmap(data.getCover());
@@ -56,11 +54,11 @@ public class SongAdapter extends ArrayAdapter<SongData> {
             @RequiresApi(api = Build.VERSION_CODES.N)
             @Override
             public void onClick(View v) {
-                int[] songimageId={R.drawable.s1,R.drawable.s2,R.drawable.imgsample,R.drawable.s4,R.drawable.s5,R.drawable.s6,R.drawable.imgsample,R.drawable.imgsample,R.drawable.j2};
-                v.toString();
-                AssetFileDescriptor temp = textList.get(position).getLocation();
-                MainActivity.currentSong=position;
-                cover.setImageResource(songimageId[position]);
+                int[] songimageId={R.drawable.imgsample,R.drawable.imgsample,R.drawable.s5,R.drawable.s9,R.drawable.s4,R.drawable.s6,R.drawable.s2,R.drawable.s1};
+                int rel =position;
+                AssetFileDescriptor temp = textList.get(rel).getLocation();
+                MainActivity.currentSong=rel;
+                cover.setImageResource(songimageId[rel]);
                 MainActivity.player.setsong(temp);
             }
         });
