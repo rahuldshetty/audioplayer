@@ -48,7 +48,7 @@ public class SongAdapter extends ArrayAdapter<SongData> {
 
 
         final SongData data = textList.get(position);
-        title.setText(data.getTitle());
+        title.setText(data.getTitle().replace(".mp3","").replace("(","").replace(")",""));
         imgView.setImageBitmap(data.getCover());
         btn.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.N)
