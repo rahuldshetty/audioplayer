@@ -54,7 +54,7 @@ public class SongAdapter extends ArrayAdapter<SongData> {
             @RequiresApi(api = Build.VERSION_CODES.N)
             @Override
             public void onClick(View v) {
-                int[] songimageId={R.drawable.imgsample,R.drawable.imgsample,R.drawable.s5,R.drawable.s9,R.drawable.s4,R.drawable.s6,R.drawable.s2,R.drawable.s1};
+                int[] songimageId={R.drawable.imgsample,R.drawable.imgsample,R.drawable.s5,R.drawable.s9,R.drawable.s4,R.drawable.s6,R.drawable.s2,R.drawable.s2,R.drawable.s1};
                 int rel =position;
                 AssetFileDescriptor temp = textList.get(rel).getLocation();
                 MainActivity.currentSong=rel;

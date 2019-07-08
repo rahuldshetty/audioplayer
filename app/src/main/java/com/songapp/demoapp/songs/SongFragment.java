@@ -119,7 +119,7 @@ public class SongFragment extends Fragment {
         songList=new ArrayList<AssetFileDescriptor>();
         AssetManager asm = getActivity().getBaseContext().getAssets();
 
-        int[] songimageId={R.drawable.s1,R.drawable.s2,R.drawable.s4,R.drawable.s5,R.drawable.s6,R.drawable.imgsample,R.drawable.imgsample,R.drawable.j2};
+        int[] songimageId={R.drawable.s1,R.drawable.s2,R.drawable.s2,R.drawable.s4,R.drawable.s5,R.drawable.s6,R.drawable.imgsample,R.drawable.imgsample,R.drawable.j2};
 
         try{
             songlist=asm.list("audio");

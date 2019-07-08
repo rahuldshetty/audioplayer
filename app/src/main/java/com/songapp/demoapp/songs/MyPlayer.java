@@ -41,7 +41,7 @@ public class MyPlayer implements Serializable {
 
     TelephonyManager telephonyManager;
 
-    static int[] songimageId={R.drawable.imgsample,R.drawable.imgsample,R.drawable.s5,R.drawable.s9,R.drawable.s4,R.drawable.s6,R.drawable.s2,R.drawable.s1};
+    static int[] songimageId={R.drawable.imgsample,R.drawable.imgsample,R.drawable.s5,R.drawable.s9,R.drawable.s4,R.drawable.s6,R.drawable.s2,R.drawable.s2,R.drawable.s1};
     //view
     private ImageView playbutton;
     private TextView name;
@@ -74,7 +74,7 @@ public class MyPlayer implements Serializable {
             prevBtn.setVisibility(View.INVISIBLE);
             prevBtn.setEnabled(false);
         }
-        else if(MainActivity.currentSong==7)
+        else if(MainActivity.currentSong==8)
         {
             fwdBtn.setVisibility(View.INVISIBLE);
             fwdBtn.setEnabled(false);
@@ -161,7 +161,7 @@ public class MyPlayer implements Serializable {
             prevBtn.setVisibility(View.INVISIBLE);
             prevBtn.setEnabled(false);
         }
-        else if(MainActivity.currentSong==7)
+        else if(MainActivity.currentSong==8)
         {
             prevBtn.setEnabled(true);
             prevBtn.setVisibility(View.VISIBLE);
@@ -182,7 +182,7 @@ public class MyPlayer implements Serializable {
         try {
             player.reset();
             player.setDataSource(currentsong.getFileDescriptor(),currentsong.getStartOffset(),currentsong.getLength());
-            name.setText(songnames[songs.indexOf(currentsong)]);
+            name.setText(songnames[songs.indexOf(currentsong)].replace(".mp3","").replace("(","").replace(")",""));
             player.prepare();
 
             long totalDuration = player.getDuration();
@@ -231,7 +231,7 @@ public class MyPlayer implements Serializable {
         if(MainActivity.currentSong==-1) {
             MainActivity.currentSong = 0;
             currentsong = songs.get(0);
-            name.setText(songnames[0]);
+            name.setText(songnames[0].replace(".mp3","").replace("(","").replace(")",""));
             fwdBtn.setEnabled(true);
             fwdBtn.setVisibility(View.VISIBLE);
             prevBtn.setVisibility(View.INVISIBLE);
@@ -239,7 +239,8 @@ public class MyPlayer implements Serializable {
         }
         else{
             currentsong=songs.get(MainActivity.currentSong);
-            name.setText(songnames[MainActivity.currentSong]);
+            name.setText(songnames[MainActivity.currentSong].replace(".mp3","").replace("(","").replace(")",""));
+
         }
     }
     void seek(){
